@@ -1,5 +1,5 @@
 <project name="HelloWorldOld" default="all" basedir=".">
-    <property name="main.dir" value="src/main/java" />
+    <property name="src.dir" value="src/main/java" />
     <property name="resources.dir" value="src/resources" />
     <property name="webapps.dir" value="src/webapps" />
     <property name="lib.dir" value="src/webapps/WEB-INF/lib" />
@@ -16,22 +16,16 @@
 
     <target name="compile" depends="clean">
         <mkdir dir="${classes.dir}" />
-        <javac srcdir="${main.dir}" destdir="${classes.dir}" includeantruntime="false">
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" includeantruntime="false">
             <classpath refid="classpath" />
         </javac>
     </target>
 
-    <target name="copy-resources" depends="compile">
-        <copy todir="${classes.dir}">
-            <fileset dir="${resources.dir}" />
-        </copy>
-    </target>
-
-    <target name="copy-webapp" depends="copy-resources">
+    <target name="copy-webapp" depends="compile">
         <copy todir="${build.dir}">
             <fileset dir="${webapps.dir}" includes="**/*"/>
         </copy>
     </target>
 
-    <target name="all" depends="clean, compile, copy-resources, copy-webapp" />
+    <target name="all" depends="clean, compile, copy-webapp" />
 </project>

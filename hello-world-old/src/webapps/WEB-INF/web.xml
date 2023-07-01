@@ -7,16 +7,16 @@
 
   <display-name>hello world old app</display-name>
 
-  <!-- <servlet>
+  <servlet>
     <servlet-name>HelloWorldOldServlet</servlet-name>
     <servlet-class>hello.world.old.HelloWorldOldServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>HelloWorldOldServlet</servlet-name>
     <url-pattern>/hello-world</url-pattern>
-  </servlet-mapping> -->
+  </servlet-mapping>
 
-  <servlet>
+  <!-- <servlet>
     <servlet-name>jersey-serlvet</servlet-name>
     <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
     <init-param>
@@ -29,5 +29,5 @@
   <servlet-mapping>
     <servlet-name>jersey-serlvet</servlet-name>
     <url-pattern>/hello-world-old-app/*</url-pattern>
-  </servlet-mapping>
+  </servlet-mapping> -->
 </web-app>

@@ -2,6 +2,7 @@
 <%! String title = "Hello World Old App"; %>
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" href="">
 <head>
   <title><%= title %></title>
 </head>
