@@ -1,2 +1,5 @@
+.devcontainer/
 .git/
-.env
+
+bin/
+gradlew*

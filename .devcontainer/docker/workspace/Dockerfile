@@ -53,7 +53,12 @@ ARG TOMCAT_VERSION
 RUN curl -s "https://get.sdkman.io" | bash \
     && source "${HOME}/.sdkman/bin/sdkman-init.sh" \
     && sdk install java "${JAVA_VERSION}" \
-    && sdk install gradle ${GRADLE_VERSION} 
+    && sdk install gradle ${GRADLE_VERSION} \
+    && sdk install tomcat ${TOMCAT_VERSION}
+
+# setup tomcat
+RUN echo 'chmod +x "${TOMCAT_HOME}/bin/catalina.sh"' >> ${HOME}/.bashrc \
+    && echo 'alias catalina="$TOMCAT_HOME/bin/catalina.sh"' >> ${HOME}/.bashrc 
 
 USER root
 
@@ -81,7 +86,7 @@ RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | d
 
 # ---------------------------------- addtional packages ----------------------------------
 
-ARG ADDITONAL_PKG="iputils-ping lsof"
+ARG ADDITONAL_PKG="iputils-ping lsof tree"
 
 RUN apt-get update -y \
     && apt-get install ${ADDITONAL_PKG} -y \

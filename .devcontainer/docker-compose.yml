@@ -5,6 +5,7 @@ services:
     container_name: ${PROJECT_NAME:-memo-apache-tomcat}-workspace
     build:
       context: ./docker/workspace
+      dockerfile: Dockerfile
       args:
         USER_NAME: ${USER_NAME:-vscode}
         USER_GROUP_NAME: ${USER_GROUP_NAME:-workspace}
@@ -21,21 +22,15 @@ services:
       TZ: ${TIME_ZONE:-Asia/Tokyo}
     volumes:
       - ../:/home/${USER_NAME:-vscode}/workspace:cached
+      - ./docker/tomcat/conf:/home/${USER_NAME:-vscode}/.sdkman/candidates/tomcat/current/conf
     ports:
       - ${WORKSPACE_PORT:-9999}:9999
 
   apache:
     build:
       context: ./docker/apache
+      dockerfile: Dockerfile
     restart: unless-stopped
     container_name: ${PROJECT_NAME:-default}-apache-container
     ports:
-      - ${APACHE_PORT:80}:80
-
-  tomcat:
-    build:
-      context: ./docker/tomcat
-    restart: unless-stopped
-    container_name: ${PROJECT_NAME:-default}-tomcat-container
-    ports:
-      - ${TOMCAT_PORT:8080}:8080
+      - ${APACHE_PORT:-3333}:80
