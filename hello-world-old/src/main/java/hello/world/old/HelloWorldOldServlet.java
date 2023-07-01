@@ -11,47 +11,52 @@ import java.io.PrintWriter;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class HelloWorldOldServlet extends HttpServlet {
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response.Status;
+
+@jakarta.ws.rs.Path("/hello-world")
+@Produces(MediaType.APPLICATION_JSON)
+public class HelloWorldOldServlet {
     private final ObjectMapper mapper = new ObjectMapper();
     private final String tomcatHome = System.getenv("TOMCAT_HOME");
     private final Path pathToJson = Paths.get(tomcatHome, "temp", "greeting.json");
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    @GET
+    public Response doGet() throws IOException {
+        System.out.println("-------------doGet method-------------");
+
         try (FileReader fileReader = new FileReader(pathToJson.toString())) {
             JsonNode greetingJsonNode = mapper.readTree(fileReader);
 
-            response.setContentType("application/json");
-            response.getWriter().write(mapper.writeValueAsString(greetingJsonNode));
+            return Response.ok(greetingJsonNode).build();
         } catch (FileNotFoundException e) {
-            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-            response.getWriter().println("File not found: " + e.getMessage());
+            return Response.status(Status.NOT_FOUND).entity("File not found: " + e.getMessage()).build();
         } catch (IOException e) {
-            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-            response.getWriter().println("Error reading file: " + e.getMessage());
+            return Response.status(Status.INTERNAL_SERVER_ERROR).entity("Error reading file: " + e.getMessage())
+                    .build();
         }
 
     }
 
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        JsonNode greetingJsonNode = mapper.readTree(request.getInputStream());
-
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response doPost(JsonNode greetingJsonNode) throws IOException {
         try (FileWriter file = new FileWriter(pathToJson.toString())) {
             String greetingJsonStr = mapper.writeValueAsString(greetingJsonNode);
             file.write(greetingJsonStr);
 
-            response.setContentType("application/json");
-            response.getWriter().write(greetingJsonStr);
+            return Response.ok(greetingJsonNode).build();
         } catch (IOException e) {
-            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-            response.getWriter().println("Error writing to file: " + e.getMessage());
+            return Response.status(Status.INTERNAL_SERVER_ERROR).entity("Error writing to file: " + e.getMessage())
+                    .build();
         }
     }
 }
