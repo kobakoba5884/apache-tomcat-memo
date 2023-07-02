@@ -1,39 +1,56 @@
 package hello.world;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.Status;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import hello.world.models.Greeting;
+@javax.ws.rs.Path("/hello-world")
+public class HelloWorldServlet {
+    private final ObjectMapper mapper = new ObjectMapper();
+    private final String tomcatHome = System.getenv("TOMCAT_HOME");
+    private final Path pathToJson = Paths.get(tomcatHome, "temp", "greeting.json");
 
-public class HelloWorldServlet extends HttpServlet {
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Greeting greeting = new Greeting("hello");
+    @GET
+    public Response doGet() throws IOException {
+        System.out.println("-------------doGet method-------------");
 
-        ObjectMapper mapper = new ObjectMapper();
-        String greetingJson = mapper.writeValueAsString(greeting);
+        try (FileReader fileReader = new FileReader(pathToJson.toString())) {
+            JsonNode greetingJsonNode = mapper.readTree(fileReader);
 
-        System.out.println(greetingJson);
+            return Response.ok(greetingJsonNode).build();
+        } catch (FileNotFoundException e) {
+            return Response.status(Status.NOT_FOUND).entity("File not found: " + e.getMessage()).build();
+        } catch (IOException e) {
+            return Response.status(Status.INTERNAL_SERVER_ERROR).entity("Error reading file: " + e.getMessage())
+                    .build();
+        }
 
-        JsonNode greetingJsonNode = mapper.readTree(greetingJson);
+    }
 
-        String greetingStr = greetingJsonNode.get("greeting").asText();
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response doPost(JsonNode greetingJsonNode) throws IOException {
+        try (FileWriter file = new FileWriter(pathToJson.toString())) {
+            String greetingJsonStr = mapper.writeValueAsString(greetingJsonNode);
+            file.write(greetingJsonStr);
 
-        String printGreeting = String.format("<h1>%s</h1>", greetingStr);
-
-        PrintWriter out = response.getWriter();
-
-        out.println("<html>");
-        out.println("<body>");
-        out.println(printGreeting);
-        out.println("</body>");
-        out.println("</html>");
+            return Response.ok(greetingJsonNode).build();
+        } catch (IOException e) {
+            return Response.status(Status.INTERNAL_SERVER_ERROR).entity("Error writing to file: " + e.getMessage())
+                    .build();
+        }
     }
 }
