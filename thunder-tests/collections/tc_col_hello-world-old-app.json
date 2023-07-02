@@ -18,11 +18,11 @@
             "colId": "a66ad86b-f07d-4d1b-b64c-06c1feada90d",
             "containerId": "16e9ef8b-cb27-4b07-9a63-69ba40b10538",
             "name": "get-greeting",
-            "url": "{{BASE_URL}}/hello-world-old-app/hello-world",
+            "url": "{{BASE_URL}}{{BASE_PORT}}/hello-world-old-app/api/hello-world",
             "method": "GET",
             "sortNum": 10000,
             "created": "2023-07-01T17:02:23.211Z",
-            "modified": "2023-07-02T08:15:46.431Z",
+            "modified": "2023-07-02T08:52:59.951Z",
             "headers": [],
             "params": [],
             "tests": []
@@ -32,11 +32,11 @@
             "colId": "a66ad86b-f07d-4d1b-b64c-06c1feada90d",
             "containerId": "16e9ef8b-cb27-4b07-9a63-69ba40b10538",
             "name": "post-greeting",
-            "url": "{{BASE_URL}}/hello-world-old-app/hello-world",
+            "url": "{{BASE_URL}}{{BASE_PORT}}/hello-world-old-app/api/hello-world",
             "method": "POST",
             "sortNum": 20000,
             "created": "2023-07-01T17:14:09.896Z",
-            "modified": "2023-07-02T08:15:58.531Z",
+            "modified": "2023-07-02T08:52:55.691Z",
             "headers": [
                 {
                     "name": "Content-Type",

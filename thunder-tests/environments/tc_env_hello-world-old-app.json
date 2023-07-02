@@ -8,7 +8,11 @@
     "data": [
         {
             "name": "BASE_URL",
-            "value": "http://localhost:3333"
+            "value": "http://localhost:"
+        },
+        {
+            "name": "BASE_PORT",
+            "value": "3333"
         }
     ]
 }
