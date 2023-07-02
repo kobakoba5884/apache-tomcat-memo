@@ -8,6 +8,6 @@
 </head>
 <body>
   <h1><%= title %></h1>
-  <a href="/hello-world-app/api/hello-world">Go to Hello World Servlet</a>
+  <a href="./api/hello-world">Go to Hello World Servlet</a>
 </body>
 </html>
