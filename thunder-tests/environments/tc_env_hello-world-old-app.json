@@ -8,7 +8,7 @@
     "data": [
         {
             "name": "BASE_URL",
-            "value": "http://localhost:3333/hello-world-old-app/"
+            "value": "http://localhost:3333"
         }
     ]
 }

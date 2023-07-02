@@ -26,8 +26,8 @@ public class HelloWorldServlet {
     private final Path pathToJson = Paths.get(tomcatHome, "temp", "greeting.json");
 
     @GET
-    public Response doGet() throws IOException {
-        System.out.println("-------------doGet method-------------");
+    public Response getGreeting() throws IOException {
+        System.out.println("-------------getGreeting method-------------");
 
         try (FileReader fileReader = new FileReader(pathToJson.toString())) {
             JsonNode greetingJsonNode = mapper.readTree(fileReader);
@@ -44,7 +44,9 @@ public class HelloWorldServlet {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response doPost(JsonNode greetingJsonNode) throws IOException {
+    public Response greet(JsonNode greetingJsonNode) throws IOException {
+        System.out.println("-------------greet method-------------");
+
         try (FileWriter file = new FileWriter(pathToJson.toString())) {
             String greetingJsonStr = mapper.writeValueAsString(greetingJsonNode);
             file.write(greetingJsonStr);
