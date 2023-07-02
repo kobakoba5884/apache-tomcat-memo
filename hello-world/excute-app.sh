@@ -25,3 +25,5 @@ $TOMCAT_HOME/bin/catalina.sh stop
 echo "${bar}"
 
 $TOMCAT_HOME/bin/catalina.sh start
+
+sudo service apache2 restart

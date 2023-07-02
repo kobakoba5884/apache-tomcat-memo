@@ -10,6 +10,7 @@ import java.nio.file.Paths;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
@@ -18,6 +19,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @javax.ws.rs.Path("/hello-world")
+@Produces(MediaType.APPLICATION_JSON)
 public class HelloWorldServlet {
     private final ObjectMapper mapper = new ObjectMapper();
     private final String tomcatHome = System.getenv("TOMCAT_HOME");
