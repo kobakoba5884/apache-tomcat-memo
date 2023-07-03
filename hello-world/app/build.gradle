@@ -8,11 +8,27 @@
 
 plugins {
     id 'war'
+    id 'java'
 }
 
 war {
     archiveBaseName = 'hello-world-app'
     archiveVersion =  ''
+}
+
+jar {
+    archiveBaseName = 'hello-world-app'
+    archiveVersion =  ''
+}
+
+task buildJar(type: Jar) {
+    archiveBaseName = 'hello-world-app'
+    archiveVersion =  ''
+    dependsOn configurations.runtimeClasspath
+    from {
+        configurations.runtimeClasspath.findAll { it.name.endsWith('jar') }.collect { zipTree(it) }
+    }
+    from sourceSets.main.output
 }
 
 repositories {
