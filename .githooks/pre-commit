@@ -6,5 +6,8 @@ OUTPUT_DIR=$CONF_DIR/examples
 echo "excuting precommit....."
 
 cp -v $CONF_DIR/tomcat/tomcat-users.xml $OUTPUT_DIR/tomcat/tomcat-users.example.xml
+cp -v $CONF_DIR/tomcat/server.xml $OUTPUT_DIR/tomcat/server.example.xml
+sudo cp -v $CONF_DIR/apache2/sites-available/000-default.conf $OUTPUT_DIR/apache2/sites-available/000-default.example.conf
+sudo cp -v $CONF_DIR/apache2/ports.conf $OUTPUT_DIR/apache2/ports.example.conf
 
 git add .

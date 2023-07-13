@@ -37,7 +37,8 @@ setup_tomcat(){
         echo "Tomcat is already set up"
     fi
 
-    ln -s $TOMCAT_HOME/conf ${TOMCAT_CONF}
+    ln -sn $TOMCAT_HOME/conf ${TOMCAT_CONF}
+    ln -sn $TOMCAT_HOME/logs/* ${TOMCAT_LOGS}
 }
 
 # ---------------------------------- install apache ----------------------------------
@@ -51,7 +52,7 @@ install_apache(){
         echo "Apache2 is already installed"
     fi
 
-    sudo ln -s /etc/apache2/ ${APACHE2_CONF}
+    sudo ln -sn /etc/apache2/ ${APACHE2_CONF}
 }
 
 # ---------------------------------- Call the functions ----------------------------------
