@@ -4,6 +4,9 @@ JAVA_VERSION=8.0.342-amzn
 GRADLE_VERSION=6.9
 TOMCAT_VERSION=8.5.88
 
+TOMCAT_CONF=./tomcat-conf
+APACHE2_CONF=./apache2-conf
+
 # ---------------------------------- Function to handle errors ----------------------------------
 handle_error() {
     echo "Error: $1"

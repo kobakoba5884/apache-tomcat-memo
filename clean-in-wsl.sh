@@ -15,6 +15,7 @@ remove_tomcat_setup(){
 
     sed -i '/chmod +x \"\${TOMCAT_HOME}\/bin\/catalina.sh\"/d' "${HOME}/.bashrc"
     sed -i '/alias catalina/d' "${HOME}/.bashrc"
+    unlink ${TOMCAT_CONF}
 }
 
 # ---------------------------------- uninstall apache ----------------------------------
@@ -27,6 +28,8 @@ uninstall_apache(){
     else
         echo "Apache2 is not installed"
     fi
+
+    unlink ${APACHE2_CONF}
 }
 
 # ---------------------------------- Call the functions ----------------------------------

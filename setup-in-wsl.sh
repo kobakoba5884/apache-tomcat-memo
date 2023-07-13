@@ -34,6 +34,8 @@ setup_tomcat(){
     else
         echo "Tomcat is already set up"
     fi
+
+    ln -s $TOMCAT_HOME/conf ${TOMCAT_CONF}
 }
 
 # ---------------------------------- install apache ----------------------------------
@@ -46,6 +48,8 @@ install_apache(){
     else
         echo "Apache2 is already installed"
     fi
+
+    sudo ln -s /etc/apache2/ ${APACHE2_CONF}
 }
 
 # ---------------------------------- Call the functions ----------------------------------
