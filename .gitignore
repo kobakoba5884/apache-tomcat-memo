@@ -8,3 +8,6 @@ build/
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+
+apache2-conf
+tomcat-conf
