@@ -1,22 +1,18 @@
 #!/bin/bash
 
+APP_DIR=$TOMCAT_HOME/webapps/hello-world-old-app
+
 bar="--------------------------------------------------------------------------------------------"
 
-gradle --version
+ant -version
 
 echo "${bar}"
 
-gradle dependencies || 1
-
-gradle build || exit 1
+ant
 
 echo "${bar}"
 
-rm -rfv $TOMCAT_HOME/webapps/hello-world-app/
-
-rm -rfv $TOMCAT_HOME/webapps/hello-world-app.war
-
-rsync -avz ./app/build/libs/hello-world-app.war $TOMCAT_HOME/webapps
+rsync -av --delete ./build/hello-world-old-app/ $APP_DIR/
 
 echo "${bar}"
 

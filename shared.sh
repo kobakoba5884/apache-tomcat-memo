@@ -6,6 +6,7 @@ TOMCAT_VERSION=8.5.88
 ANT_VERSION=1.10.13
 
 TOMCAT_CONF=./conf/tomcat
+TOMCAT_LOGS=./logs/tomcat
 APACHE2_CONF=./conf/apache2
 
 # ---------------------------------- Function to handle errors ----------------------------------

@@ -11,3 +11,4 @@ build/
 
 conf/apache2
 conf/tomcat
+logs/
