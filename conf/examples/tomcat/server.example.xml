@@ -125,7 +125,7 @@
                port="8888"
                redirectPort="8443"
                maxParameterCount="1000"
-               secret="hello-world-old-secret"
+               secret="my-secret"
                />
    
 

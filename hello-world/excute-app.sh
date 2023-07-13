@@ -16,7 +16,7 @@ rm -rfv $TOMCAT_HOME/webapps/hello-world-app/
 
 rm -rfv $TOMCAT_HOME/webapps/hello-world-app.war
 
-rsync -avz ~/workspace/java/memo-apache-tomcat/hello-world/app/build/libs/hello-world-app.war $TOMCAT_HOME/webapps
+rsync -avz ./app/build/libs/hello-world-app.war $TOMCAT_HOME/webapps
 
 echo "${bar}"
 
@@ -26,4 +26,5 @@ echo "${bar}"
 
 $TOMCAT_HOME/bin/catalina.sh start
 
-sudo service apache2 restart
+sudo apachectl configtest
+sudo systemctl restart apache2
