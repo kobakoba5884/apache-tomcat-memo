@@ -7,6 +7,7 @@ uninstall_sdkman_tools(){
     sdk uninstall java "${JAVA_VERSION}" --force || handle_error "Failed to uninstall Java"
     sdk uninstall gradle "${GRADLE_VERSION}" --force || handle_error "Failed to uninstall Gradle"
     sdk uninstall tomcat "${TOMCAT_VERSION}" --force || handle_error "Failed to uninstall Tomcat"
+    sdk uninstall ant "${ANT_VERSION}" --force || handle_error "Failed to uninstall Ant"
 }
 
 # ---------------------------------- remove tomcat setup ----------------------------------

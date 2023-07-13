@@ -3,9 +3,10 @@
 JAVA_VERSION=8.0.342-amzn
 GRADLE_VERSION=6.9
 TOMCAT_VERSION=8.5.88
+ANT_VERSION=1.10.13
 
-TOMCAT_CONF=./tomcat-conf
-APACHE2_CONF=./apache2-conf
+TOMCAT_CONF=./conf/tomcat
+APACHE2_CONF=./conf/apache2
 
 # ---------------------------------- Function to handle errors ----------------------------------
 handle_error() {
