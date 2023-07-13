@@ -1,0 +1,10 @@
+#!/bin/bash
+
+CONF_DIR=conf
+OUTPUT_DIR=$CONF_DIR/examples
+
+echo "excuting precommit....."
+
+cp -v $CONF_DIR/tomcat/tomcat-users.xml $OUTPUT_DIR/tomcat/tomcat-users.example.xml
+
+git add .

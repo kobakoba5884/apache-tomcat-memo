@@ -9,5 +9,5 @@ build/
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
 
-apache2-conf
-tomcat-conf
+conf/apache2
+conf/tomcat

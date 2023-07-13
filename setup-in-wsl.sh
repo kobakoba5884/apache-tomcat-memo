@@ -22,6 +22,8 @@ install_sdkman(){
     sdk install gradle "${GRADLE_VERSION}" || handle_error "Failed to install Gradle"
 
     sdk install tomcat "${TOMCAT_VERSION}" || handle_error "Failed to install Tomcat"
+
+    sdk install ant "${ANT_VERSION}" || handle_error "Failed to install Ant"
 }
 
 # ---------------------------------- setup tomcat ----------------------------------
