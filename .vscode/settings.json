@@ -1,14 +1,10 @@
 {
-    "java.configuration.updateBuildConfiguration": "automatic",
-    "java.compile.nullAnalysis.mode": "automatic",
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": "vscjava.vscode-java-pack",
-    "[jsonc]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
-    },
-    "java.dependency.packagePresentation": "hierarchical",
-    "java.import.gradle.home": "/home/minmin/.sdkman/candidates/gradle/7.3",
-    "[xml]": {
-        "editor.defaultFormatter": "redhat.vscode-xml"
-    }
+  "java.configuration.updateBuildConfiguration": "automatic",
+  "java.compile.nullAnalysis.mode": "automatic",
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "vscjava.vscode-java-pack",
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "java.dependency.packagePresentation": "hierarchical"
 }
