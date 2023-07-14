@@ -11,19 +11,9 @@ plugins {
     id 'java'
 }
 
-war {
-    archiveBaseName = 'hello-world-app'
-    archiveVersion =  ''
-}
-
-jar {
-    archiveBaseName = 'hello-world-app'
-    archiveVersion =  ''
-}
+archivesBaseName = 'hello-world-app'
 
 task buildJar(type: Jar) {
-    archiveBaseName = 'hello-world-app'
-    archiveVersion =  ''
     dependsOn configurations.runtimeClasspath
     from {
         configurations.runtimeClasspath.findAll { it.name.endsWith('jar') }.collect { zipTree(it) }

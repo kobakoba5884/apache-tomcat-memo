@@ -10,6 +10,8 @@ gradle dependencies || return
 
 gradle build || return
 
+gradle buildJar || return
+
 echo "${bar}"
 
 rm -rfv $TOMCAT_HOME/webapps/hello-world-app/
