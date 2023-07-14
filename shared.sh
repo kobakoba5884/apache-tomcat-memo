@@ -24,3 +24,10 @@ start_log(){
 command_exists() {
     command -v "$1" >/dev/null 2>&1
 }
+
+# ---------------------------------- clean .bashrc ----------------------------------
+clean_bashrc(){
+    sed -i '/chmod +x \"\${TOMCAT_HOME}\/bin\/catalina.sh\"/d' "${HOME}/.bashrc"
+    sed -i '/alias catalina/d' "${HOME}/.bashrc"
+    sed -i '/export CATALINA_TMPDIR/d' "${HOME}/.bashrc"
+}

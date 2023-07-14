@@ -30,12 +30,11 @@ install_sdkman(){
 setup_tomcat(){
     start_log "${FUNCNAME[0]}"
 
-    if ! grep -q 'alias catalina' "${HOME}/.bashrc" ; then
-        echo 'chmod +x "${TOMCAT_HOME}/bin/catalina.sh"' >> "${HOME}/.bashrc"
-        echo 'alias catalina="$TOMCAT_HOME/bin/catalina.sh"' >> "${HOME}/.bashrc"
-    else
-        echo "Tomcat is already set up"
-    fi
+    clean_bashrc
+
+    echo 'chmod +x "${TOMCAT_HOME}/bin/catalina.sh"' >> "${HOME}/.bashrc"
+    echo 'alias catalina="$TOMCAT_HOME/bin/catalina.sh"' >> "${HOME}/.bashrc"
+    echo 'export CATALINA_TMPDIR="$TOMCAT_HOME/temp"'  >> "${HOME}/.bashrc"
 
     ln -sn $TOMCAT_HOME/conf ${TOMCAT_CONF}
     ln -sn $TOMCAT_HOME/logs/* ${TOMCAT_LOGS}
@@ -62,3 +61,5 @@ install_packages
 install_sdkman
 setup_tomcat
 install_apache
+
+source ${HOME}/.bashrc

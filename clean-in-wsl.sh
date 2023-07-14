@@ -14,8 +14,8 @@ uninstall_sdkman_tools(){
 remove_tomcat_setup(){
     start_log "${FUNCNAME[0]}"
 
-    sed -i '/chmod +x \"\${TOMCAT_HOME}\/bin\/catalina.sh\"/d' "${HOME}/.bashrc"
-    sed -i '/alias catalina/d' "${HOME}/.bashrc"
+    clean_bashrc
+
     unlink ${TOMCAT_CONF}
 }
 
