@@ -117,4 +117,3 @@ To build and deploy the application, run the following command:
 
     ./excute-app.sh
 ```
-

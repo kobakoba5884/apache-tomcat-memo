@@ -6,9 +6,9 @@ gradle --version
 
 echo "${bar}"
 
-gradle dependencies || 1
+gradle dependencies || return
 
-gradle build || exit 1
+gradle build || return
 
 echo "${bar}"
 
