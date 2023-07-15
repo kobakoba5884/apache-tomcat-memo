@@ -15,8 +15,6 @@ remove_tomcat_setup(){
     start_log "${FUNCNAME[0]}"
 
     clean_bashrc
-
-    unlink ${TOMCAT_CONF}
 }
 
 # ---------------------------------- uninstall apache ----------------------------------
@@ -29,8 +27,13 @@ uninstall_apache(){
     else
         echo "Apache2 is not installed"
     fi
+}
 
-    unlink ${APACHE2_CONF}
+# ---------------------------------- Clean directory ----------------------------------
+clean_dir(){
+    rm -rf ${LOGS_DIR}
+    rm ${TOMCAT_CONF}/conf
+    rm ${TOMCAT_CONF} ${APACHE2_CONF}
 }
 
 # ---------------------------------- Call the functions ----------------------------------
@@ -39,3 +42,4 @@ source ./shared.sh
 uninstall_sdkman_tools
 remove_tomcat_setup
 uninstall_apache
+clean_dir

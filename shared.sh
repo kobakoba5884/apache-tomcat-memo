@@ -5,9 +5,12 @@ GRADLE_VERSION=6.9
 TOMCAT_VERSION=8.5.88
 ANT_VERSION=1.10.13
 
-TOMCAT_CONF=./conf/tomcat
-TOMCAT_LOGS=./logs/tomcat
-APACHE2_CONF=./conf/apache2
+CONF_DIR=./conf
+TOMCAT_CONF=$CONF_DIR/tomcat
+APACHE2_CONF=$CONF_DIR/apache2
+
+LOGS_DIR=./logs
+TOMCAT_LOGS=$LOGS_DIR/tomcat
 
 # ---------------------------------- Function to handle errors ----------------------------------
 handle_error() {

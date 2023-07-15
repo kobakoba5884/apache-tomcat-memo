@@ -36,7 +36,12 @@ setup_tomcat(){
     echo 'alias catalina="$TOMCAT_HOME/bin/catalina.sh"' >> "${HOME}/.bashrc"
     echo 'export CATALINA_TMPDIR="$TOMCAT_HOME/temp"'  >> "${HOME}/.bashrc"
 
-    ln -sn $TOMCAT_HOME/conf ${TOMCAT_CONF}
+    mkdir -p ${TOMCAT_CONF}
+
+    ln -sn $TOMCAT_HOME/conf/* ${TOMCAT_CONF}
+
+    mkdir -p ${TOMCAT_LOGS}
+
     ln -sn $TOMCAT_HOME/logs/* ${TOMCAT_LOGS}
 }
 
