@@ -1,7 +1,7 @@
 <configuration>
     <!-- Define properties -->
     <property name="LOG_FILE_NAME" value="hello-world-app"/>
-    <property name="LOG_FILE_PATH" value="./logs/app"/>
+    <property name="LOG_FILE_PATH" value="./logs"/>
     
     <!-- Define appender for console -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
