@@ -56,7 +56,7 @@ install_apache(){
         echo "Apache2 is already installed"
     fi
 
-    sudo ln -sn /etc/apache2/ ${APACHE2_CONF}
+    sudo ln -sn /etc/apache2 ${APACHE2_CONF}
 }
 
 # ---------------------------------- Call the functions ----------------------------------
