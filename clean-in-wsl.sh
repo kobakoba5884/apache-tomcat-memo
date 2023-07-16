@@ -31,9 +31,10 @@ uninstall_apache(){
 
 # ---------------------------------- Clean directory ----------------------------------
 clean_dir(){
+    start_log "${FUNCNAME[0]}"
+    
     rm -rf ${LOGS_DIR}
-    rm ${TOMCAT_CONF}/conf
-    rm ${TOMCAT_CONF} ${APACHE2_CONF}
+    rm -r ${TOMCAT_CONF} ${APACHE2_CONF}
 }
 
 # ---------------------------------- Call the functions ----------------------------------

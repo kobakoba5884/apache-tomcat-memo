@@ -14,13 +14,13 @@ TOMCAT_LOGS=$LOGS_DIR/tomcat
 
 # ---------------------------------- Function to handle errors ----------------------------------
 handle_error() {
-    echo "Error: $1"
+    echo "Error: $1" >&2
     return
 }
 
 # ---------------------------------- Function to log the start of an operation ----------------------------------
 start_log(){
-    echo "Start: $1"
+    echo "------------------------ Start: $1 ------------------------"
 }
 
 # ---------------------------------- Check if command is available ----------------------------------

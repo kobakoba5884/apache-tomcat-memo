@@ -67,4 +67,4 @@ install_sdkman
 setup_tomcat
 install_apache
 
-source ${HOME}/.bashrc
+. ${HOME}/.bashrc
