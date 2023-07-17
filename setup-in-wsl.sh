@@ -43,6 +43,8 @@ setup_tomcat(){
     mkdir -p ${TOMCAT_LOGS}
 
     ln -sn $TOMCAT_HOME/logs/* ${TOMCAT_LOGS}
+
+    chmod -R -w $CONF_DIR/examples
 }
 
 # ---------------------------------- install apache ----------------------------------
@@ -57,6 +59,8 @@ install_apache(){
     fi
 
     sudo ln -sn /etc/apache2 ${APACHE2_CONF}
+
+    sudo a2enmod proxy_ajp
 }
 
 # ---------------------------------- Call the functions ----------------------------------
