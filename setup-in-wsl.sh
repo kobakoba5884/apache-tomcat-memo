@@ -43,8 +43,6 @@ setup_tomcat(){
     mkdir -p ${TOMCAT_LOGS}
 
     ln -sn $TOMCAT_HOME/logs/* ${TOMCAT_LOGS}
-
-    chmod -R -w $CONF_DIR/examples
 }
 
 # ---------------------------------- install apache ----------------------------------
@@ -63,6 +61,11 @@ install_apache(){
     sudo a2enmod proxy_ajp
 }
 
+# ---------------------------------- setup confs ----------------------------------
+setup_confs(){
+    chmod -R -w $CONF_DIR/examples
+}
+
 # ---------------------------------- Call the functions ----------------------------------
 source ./shared.sh
 
@@ -70,5 +73,6 @@ install_packages
 install_sdkman
 setup_tomcat
 install_apache
+setup_confs
 
 . ${HOME}/.bashrc

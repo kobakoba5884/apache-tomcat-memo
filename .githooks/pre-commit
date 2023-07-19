@@ -2,12 +2,29 @@
 
 CONF_DIR=conf
 OUTPUT_DIR=$CONF_DIR/examples
+FILES=(
+    "tomcat/tomcat-users.xml"
+    "tomcat/server.xml"
+    "apache2/sites-available/000-default.conf"
+    "apache2/ports.conf"
+)
 
 echo "excuting precommit....."
 
-cp -v $CONF_DIR/tomcat/tomcat-users.xml $OUTPUT_DIR/tomcat/tomcat-users.example.xml
-cp -v $CONF_DIR/tomcat/server.xml $OUTPUT_DIR/tomcat/server.example.xml
-sudo cp -v $CONF_DIR/apache2/sites-available/000-default.conf $OUTPUT_DIR/apache2/sites-available/000-default.example.conf
-sudo cp -v $CONF_DIR/apache2/ports.conf $OUTPUT_DIR/apache2/ports.example.conf
+for file in "${FILES[@]}"; do
+    if [ -f "$CONF_DIR/$file" ]; then
+        output_directory="$(dirname "$OUTPUT_DIR/$file.example")"
+        output_file="$OUTPUT_DIR/$file.example"
 
-git add .
+        if [ ! -d "$output_directory" ]; then
+          mkdir -p "$output_directory"
+        fi
+        
+        sudo cp -v "$CONF_DIR/$file" "$output_file"
+
+        # Add the file to git only if it has changes
+        if ! git diff --quiet "$output_file"; then
+            git add "$output_file"
+        fi
+    fi
+done
