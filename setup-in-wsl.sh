@@ -63,11 +63,13 @@ install_apache(){
 
 # ---------------------------------- setup confs ----------------------------------
 setup_confs(){
-    chmod -R -w $EXAMPLE_CONF
+    start_log "${FUNCNAME[0]}"
 
-    find "$EXAMPLE_DIR" -type f | while read example_file; do
+    sudo chmod -R -w $EXAMPLE_CONF
+
+    find "$EXAMPLE_CONF" -type f | while read example_file; do
         file=${example_file%.example}
-        target_file=${file#$EXAMPLE_DIR}
+        target_file=${file#$EXAMPLE_CONF/}
 
         output_directory="$(dirname "$CONF_DIR/$target_file")"
 
