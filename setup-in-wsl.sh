@@ -63,7 +63,27 @@ install_apache(){
 
 # ---------------------------------- setup confs ----------------------------------
 setup_confs(){
-    chmod -R -w $CONF_DIR/examples
+    chmod -R -w $EXAMPLE_CONF
+
+    find "$EXAMPLE_DIR" -type f | while read example_file; do
+        file=${example_file%.example}
+        target_file=${file#$EXAMPLE_DIR}
+
+        output_directory="$(dirname "$CONF_DIR/$target_file")"
+
+        if [ ! -d "$output_directory" ]; then
+            mkdir -p "$output_directory"
+        fi
+
+        # Get the owner of the file
+        owner=$(stat -c '%U' "$example_file")
+
+        if [ "$owner" = "root" ]; then
+            sudo cp -v "$example_file" "$CONF_DIR/$target_file"
+        else
+            cp -v "$example_file" "$CONF_DIR/$target_file"
+        fi
+    done
 }
 
 # ---------------------------------- Call the functions ----------------------------------
